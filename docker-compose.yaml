@@ -8,6 +8,9 @@ services:
     restart: unless-stopped
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - type: bind
+        source: ./images/favicon.svg
+        target: /var/www/favicon.svg
       - caddy-data:/data:rw
       - caddy-config:/config:rw
     environment:
@@ -55,8 +58,14 @@ services:
       - "127.0.0.1:8080:8080"
     volumes:
       - ./searxng:/etc/searxng:rw
+      - type: bind
+        source: ./images/SakuraSearch.png
+        target: /usr/local/searxng/searx/static/themes/simple/img/searxng.png
+      - type: bind
+        source: ./images/favicon-96x96.png
+        target: /usr/local/searxng/searx/static/themes/simple/img/favicon.png
     environment:
-      - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
+      - SEARXNG_BASE_URL=https://zen.sakura-box.myfritz.link/sakura-search/ # https://${SEARXNG_HOSTNAME:-localhost}/
       - SEARXNG_PUBLIC_INSTANCE=${SEARXNG_PUBLIC_INSTANCE:-false}
       - UWSGI_WORKERS=${SEARXNG_UWSGI_WORKERS:-4}
       - UWSGI_THREADS=${SEARXNG_UWSGI_THREADS:-4}
