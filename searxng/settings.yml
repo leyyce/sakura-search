@@ -1,11 +1,56 @@
 # see https://docs.searxng.org/admin/settings/settings.html#settings-use-default-settings
 use_default_settings: true
+general:
+  instance_name: "Sakura Search"
 server:
   # base_url is defined in the SEARXNG_BASE_URL environment variable, see .env and docker-compose.yml
   secret_key: "ultrasecretkey"  # change this!
   limiter: true  # can be disabled for a private instance
   image_proxy: true
+search:
+  safe_search: 0
+  autocomplete: "google"
+  favicon_resolver: "google"
 ui:
   static_use_hash: true
+plugins:
+  searx.plugins.tracker_url_remover.SXNGPlugin:
+    active: true
+engines:
+  # General
+  - name: startpage
+    disabled: true
+  - name: brave
+    disabled: true
+  # Images
+  - name: duckduckgo images
+    disabled: false
+  # Video
+  - name: duckduckgo videos
+    disabled: false
+  # News
+  - name: duckduckgo news
+    disabled: false
+  # Files
+  - name: apk mirror
+    disabled: false
+  - name: fdroid
+    disabled: false
+  - name: annas archive
+    disabled: false
+  - name: library genesis
+    disabled: false
+  # Social Media
+  - name: reddit
+    disabled: false
+  # Other
+  - name: duden
+    disabled: false
+  - name: imdb
+    disabled: false
+  - name: rottentomatoes
+    disabled: false
+  - name: tmdb
+    disabled: false
 redis:
   url: redis://redis:6379/0
