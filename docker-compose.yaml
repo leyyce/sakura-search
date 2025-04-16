@@ -13,6 +13,7 @@ services:
     environment:
       - SEARXNG_HOSTNAME=${SEARXNG_HOSTNAME:-http://localhost}
       - SEARXNG_TLS=${LETSENCRYPT_EMAIL:-internal}
+      - SEARXNG_EXTERNAL_BANG_ALLOWLIST=${SEARXNG_EXTERNAL_BANG_ALLOWLIST}
     cap_drop:
       - ALL
     cap_add:
@@ -56,6 +57,7 @@ services:
       - ./searxng:/etc/searxng:rw
     environment:
       - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
+      - SEARXNG_PUBLIC_INSTANCE=${SEARXNG_PUBLIC_INSTANCE:-false}
       - UWSGI_WORKERS=${SEARXNG_UWSGI_WORKERS:-4}
       - UWSGI_THREADS=${SEARXNG_UWSGI_THREADS:-4}
     cap_drop:
