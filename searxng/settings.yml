@@ -2,9 +2,15 @@
 use_default_settings: true
 general:
   instance_name: "Sakura Search"
+brand:
+  custom:
+    maintainer: "Leya Wehner"
+    links:
+      Uptime: https://uptimekuma-leya.zen.usbx.me/status/sakura-search
+      GitHub: https://github.com/leyyce/sakura-search
 server:
   # base_url is defined in the SEARXNG_BASE_URL environment variable, see .env and docker-compose.yml
-  secret_key: "4e5cc6b9f517761207b107770430b0a6821b47a70381cda7160fcd67f34fa305"  # change this!
+  secret_key: "ultrasecretkey"  # change this!
   limiter: true  # can be disabled for a private instance
   image_proxy: true
 search:
